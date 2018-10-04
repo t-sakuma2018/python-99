@@ -1,3 +1,3 @@
 def last(x):
     return x[-1]
-    #aaa    
+    #  -1　で一番後ろ　-2で後ろから2番目
