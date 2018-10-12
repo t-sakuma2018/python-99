@@ -111,3 +111,5 @@ def is_unique2(seq):
     seen = []
     unique_list = [x for x in seq if x not in seen and not seen.append(x)]
     return len(seq) == len(unique_list)
+
+# -
