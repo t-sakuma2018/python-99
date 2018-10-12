@@ -75,7 +75,8 @@ def gp(groups_pattern, persons):
                             result.append([name, age])
                             end_flag = True
                         # ------------------------------------------------------------------------------------
-    # print(result)
+    print(result)
+    # print(is_unique(result))
     print("----------------------------------------------")
     return result
 
@@ -87,6 +88,7 @@ def group3(persons):
     result = gp(groups_pattern, persons)
     print("結果は")
     print(len(result))
+    print(result)
     print("です")
     return result
 
@@ -99,5 +101,13 @@ def group(groups_pattern, persons):
     result = gp(groups_pattern, persons)
     print("結果は")
     print(len(result))
+    print(result)
     print("です")
+    print(is_unique2(result))
     return result
+
+
+def is_unique2(seq):
+    seen = []
+    unique_list = [x for x in seq if x not in seen and not seen.append(x)]
+    return len(seq) == len(unique_list)
