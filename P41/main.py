@@ -1,15 +1,12 @@
+import math
+
+
 def goldbach_list(num_min, num_max, lower_limit=2):
-    # 引数が1, 2000, 50のとき→ｘ
     result = []
-
-    num_list = range(num_min, num_max+1)
-
-    for i in num_list:
-        buf = []
-        if is_even(i):
-            buf = goldbach(i, lower_limit)
+    for i in range(num_min, num_max + 1, 1):
+        buf = goldbach(i, lower_limit)
         if not buf == []:
-            buf = [i] + buf  # [i, buf[0], buf[1]]
+            buf = [i] + buf
             result += [buf]
         i += 1
     return result
@@ -17,34 +14,34 @@ def goldbach_list(num_min, num_max, lower_limit=2):
 
 def goldbach(num, lower_limit):
     result = []
+    if lower_limit > 2:
+        cnt = num // 13                                     # 13?
+    else:
+        cnt = num // 2
 
-    if num <= 3:
-        return result
-    i = lower_limit
+    if num > 4:
+        for j in range(1, cnt):
+            if num - j <= 0:
+                return result
 
-    loopy = range(i, 100)
-    for j in loopy:
+            if is_prime(j) and is_prime(num - j):           # １　素数群か、
+                result += [j, (num - j)]
+                break
+            j += 1
 
-        if is_prime(j) and is_prime(num - j):
-            result += [j, (num - j)]
-            break
-        j += 1
+        if result == []:
+            return result
 
+        if result[0] <= lower_limit:                        # ２　50より大きいか。
+            result = []
+            return result
     return result
 
 
 def is_prime(number):
-
-    if number == 0:
+    if number == 1:
         return False
-    elif number == 1:
-        return False
-
-    for p in range(2, number):
+    for p in range(2, int(math.sqrt(number) + 1)):
         if number % p == 0:
             return False
     return True
-
-
-def is_even(num):
-    return num % 2 == 0
