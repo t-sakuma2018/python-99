@@ -19,11 +19,11 @@ def goldbach(num, lower_limit):
     else:
         cnt = num // 2
 
+    if num - cnt <= 0:                                      # 素数候補がマイナスのとき
+        return result
+
     if num > 4:
         for j in range(1, cnt):
-            if num - j <= 0:
-                return result
-
             if is_prime(j) and is_prime(num - j):           # １　素数群か、
                 result += [j, (num - j)]
                 break
